@@ -14,5 +14,16 @@
     "start": "node server.js"
   },
   "author": "Jose G. Annunziato",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoopGhosh/ghosh-roop-web-dev.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RoopGhosh/ghosh-roop-web-dev/issues"
+  },
+  "homepage": "https://github.com/RoopGhosh/ghosh-roop-web-dev#readme"
 }

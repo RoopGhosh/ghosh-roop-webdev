@@ -3,47 +3,8 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
-}
-
-.navbar-default {
-    background-color: #337ab7;
-    border-color: #337ab7;
-}
-
-.navbar-default .navbar-brand {
-    color: #eee;
-}
-
-.navbar-default .navbar-link {
-    color: #eee;
-}
-
-body {
     padding-top: 50px;
 }
-
-
-/*
- * Global add-ons
- */
-
-.sub-header {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-/*
- * Top navigation
- * Hide default border to remove 1px line.
- */
-.navbar-fixed-top {
-    border: 0;
-}
-
-/*
- * Sidebar
- */
 
 /* Hide for mobile, show later */
 .sidebar {
@@ -99,12 +60,6 @@ body {
 .main .page-header {
     margin-top: 0;
 }
-
-
-/*
- * Placeholder dashboard ideas
- */
-
 .placeholders {
     margin-bottom: 30px;
     text-align: center;
@@ -120,9 +75,6 @@ body {
     border-radius: 50%;
 }
 
-.navbar-default .navbar-toggle {
-    border-color: #337ab7;
-}
 
 .navbar-toggle {
     position: relative;
@@ -134,7 +86,26 @@ body {
     padding: 15px 150px;
 }
 
+.navbar-fixed-bottom span{
+    color: #337ab7
+}
 
-#pagehtml{
-    background-color: #f5f5f5;
+.div-margin{
+    margin-top:20px;
+}
+
+.relative-position {
+    position: relative;
+}
+.absolute-position {
+    position: absolute;
+}
+.list-element-menu {
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    background-color: white;
+}
+.zero-right-padding {
+    padding-right: 0px;
 }
