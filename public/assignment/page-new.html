@@ -9,24 +9,48 @@
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class=" container-fluid collapsed" id ="pages">
-        <a href="#" class="navbar-link navbar-text pull-left">
+    <div class=" container-fluid row" >
+        <div class = "col-xs-3 hidden-xs">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand pull-left">
           <span class="glyphicon glyphicon-menu-left">
           </span>
-        </a>
-        <a class="navbar-brand" href="#">
-            New Page
-        </a>
-        <a href="#" class="navbar-link navbar-text pull-right">
+                </a>
+                <a class="navbar-brand" href="#">
+                    Pages
+                </a>
+            </div>
+            <a class="navbar-brand pull-right" href="#">
+            <span class="glyphicon glyphicon-plus ">
+          </span>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-9" >
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand pull-left visible-xs">
+          <span class="glyphicon glyphicon-menu-left">
+          </span>
+                </a>
+                <a class="navbar-brand" href="#">
+                    New Page
+                </a>
+                <a href="#" class="navbar-link navbar-text pull-right visible-xs">
           <span class="glyphicon glyphicon-ok">
           </span>
-        </a>
+                </a>
+            </div>
+            <a href="#" class="navbar-link navbar-text pull-right hidden-xs">
+          <span class="glyphicon glyphicon-ok">
+          </span>
+            </a>
+        </div>
     </div>
 </nav>
 
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-3 sidebar">
             <ul class="nav nav-sidebar">
                 <li><div class="container-fluid">
                     <a class="" href="#">
@@ -59,7 +83,7 @@
                 </div></li>
             </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 main">
             <div class="form-group">
                 <label for="usr">Page name:</label>
                 <input type="text" class="form-control" id="usr" placeholder="Page Name">
@@ -71,7 +95,7 @@
             <nav class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container-fluid" >
                     <p class="navbar-text pull-right">
-                        <a href="#" class="navbar-link">
+                        <a href="profile.html" class="navbar-link">
           <span class="glyphicon glyphicon-user">
           </span>
                         </a>
