@@ -6,7 +6,7 @@
         .controller("RegisterController",RegisterController)
 
     function LoginController($routeParams,$location,UserService){
-        vm.userId = $routeParams['uid'];
+        var userId = $routeParams['uid'];
         var vm = this;
         vm.login =  function login(username, password){
             var user = UserService.findUserbyCredentials(username,password);
@@ -24,7 +24,7 @@
         vm.user = UserService.findUserbyUserId(userid);
     }
 
-    function RegisterController($location,UserService){
+    function RegisterController($routeParams,$location,UserService){
         var vm = this;
         vm.userId = $routeParams['uid'];
         vm.register =  register;

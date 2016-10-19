@@ -50,7 +50,6 @@
                 factory:"PageService"
             })
 
-            //todo: this one
             .when("/user/:uid/website/:wid/page/new", {
                 templateUrl: "views/page/page-new.view.client.html",
                 controller: "PageControllerNew",
@@ -86,6 +85,7 @@
                 controllerAs:"model",
                 factory:"WidgetService"
             })
+
 
             .otherwise({
                 redirectTo:"/login"

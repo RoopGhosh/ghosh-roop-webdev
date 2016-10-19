@@ -21,7 +21,8 @@
 
         var api = {
             findWidgetsByPageId:findWidgetsByPageId,
-            findWidgetById:findWidgetById
+            findWidgetById:findWidgetById,
+            addWidget:addWidget
         }
         return api;
 
@@ -42,6 +43,35 @@
                 }
             }
             return null;
+        }
+
+        function addWidget(widgetType,pid) {
+            var temp = Number.MIN_VALUE;
+            for(w in widgets){
+                if(widgets[w]._id>temp){
+                    temp = widgets[w]._id;
+                }
+            }
+            temp++;
+            var widget;
+            switch(widgetType) {
+                case "HEADER":
+                widget = { "_id": temp+'', "widgetType": "HEADER", "pageId": pid+'', "size": 2, "text": ""};
+                    break;
+                case "YOUTUBE":
+                    widget = { "_id": temp+'', "widgetType": "YOUTUBE", "pageId": pid+'', "width": "100%",
+                        "url": "" };
+                    break;
+                case "HTML":
+                widget = { "_id": temp+'', "widgetType": "HTML", "pageId": pid+'', "text": ""};
+                    break;
+                case "IMAGE":
+                    widget = { "_id": temp+'', "widgetType": "IMAGE", "pageId": pid+'', "width": "100%",
+                        "url": ""};
+                    break;
+            }
+            widgets.push(widget);
+            return widget;
         }
     }
 })();

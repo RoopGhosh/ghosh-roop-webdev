@@ -33,19 +33,37 @@
         }
     }
 
-    function WidgetControllerEdit($routeParams,WidgetService) {
+    function WidgetControllerEdit($routeParams,WidgetService,$location) {
         var vm = this;
         vm.pid = $routeParams['pid'];
         vm.uid = $routeParams['uid'];
         vm.wid= $routeParams['wid'];
-        function init(){
-            vm.widget = WidgetService.findWidgetById(vm.wid);
+        vm.wgid= $routeParams['wgid'];
+        vm.widgetType = $routeParams['widgetType'];
+        function init() {
+            vm.widget = WidgetService.findWidgetById(vm.wgid);
         }
         init();
     }
-    function WidgetControllerChooser($routeParams,WidgetService) {
-        var vm = this;
 
+    function WidgetControllerChooser($routeParams,WidgetService,$location) {
+        var vm = this;
+        vm.uid = $routeParams['uid'];
+        vm.wid = $routeParams['wid'];
+        vm.pid = $routeParams['pid'];
+        vm.clickItem = clickItem;
+        function init(){
+
+        }
+        init();
+        function clickItem(widgetType) {
+            var item = WidgetService.addWidget(widgetType,vm.pid);
+            if(item!=null){
+                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+item._id);
+            }else{
+                //todo
+            }
+        }
     }
 
 })();
