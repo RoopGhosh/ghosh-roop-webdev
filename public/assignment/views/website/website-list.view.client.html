@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid" >
+        <a href="#" class="navbar-link navbar-text pull-left">
+          <span class="glyphicon glyphicon-menu-left">
+          </span>
+            </a>
+        <a class="navbar-brand" href="#">
+            Websites
+        </a>
+        <a href="#/user/{{model.userId}}/website/new" class="navbar-link navbar-text pull-right">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+        </a>
+    </div>
+</nav>
+<br>
+<div class="container-fluid">
+    <div ng-repeat = 'website in model.websites' class="container-fluid nav-pills">
+        <br>
+        <a href="#/user/{{website.developerId}}/website/{{website._id}}/page">
+            {{website.name}}
+        </a>
+        <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
+          <span class="glyphicon glyphicon-cog">
+          </span>
+        </a>
+
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid" >
+        <p class="navbar-text pull-right">
+            <a href="#" class="navbar-link">
+          <span class="glyphicon glyphicon-user">
+          </span>
+            </a>
+        </p>
+    </div>
+</nav>

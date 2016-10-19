@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Website Edit</title><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-</head>
-<body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class=" container-fluid row" >
@@ -34,12 +25,12 @@
         <a class="navbar-brand" href="#">
             Edit Website
         </a>
-            <a href="#" class="navbar-link navbar-text pull-right visible-xs">
+            <a ng-click ="model.updateWebsite(model.website.name,model.website.description)" class="navbar-link navbar-text pull-right visible-xs">
           <span class="glyphicon glyphicon-ok">
           </span>
         </a>
     </div>
-        <a href="#" class="navbar-link navbar-text pull-right hidden-xs">
+        <a ng-click ="model.updateWebsite(model.website.name,model.website.description)" class="navbar-link navbar-text pull-right hidden-xs">
           <span class="glyphicon glyphicon-ok">
           </span>
         </a>
@@ -82,26 +73,27 @@
                 </div></li>
             </ul>
         </div>
+
+
+        <!--right div-->
         <div class="col-sm-9 col-sm-offset-3 main">
             <form>
                 <div class="form-group">
                     <label for="usr">Name:</label>
-                    <input type="text" class="form-control" id="usr" placeholder="THE ACTUAL NAME">
+                    <input ng-model = model.website.name type="text" class="form-control" id="usr" placeholder="THE ACTUAL NAME">
                 </div>
                 <div class="form-group">
                     <label for="Description">Description:</label>
-                    <textarea class="form-control" rows="5" id="Description"
-                              placeholder="I used two versions of the song and mixed them up. They are not mine, one is from the L'Orchestra Cinematique and the other one is from Sofia Karlberg. I'm Not a dj, I did NOT sing it, I just like to edit songs when I want to put choreography together. Hope you guys like it...
-I used two versions of the song and mixed them up. They are not mine, one is from the L'Orchestra Cinematique and the other one is from Sofia Karlberg. I'm Not a dj, I did NOT sing it, I just like to edit songs when I want to put choreography together. Hope you guys like it...
-"></textarea>
+                    <textarea ng-model = model.website.description class="form-control" rows="5" id="Description"
+                              placeholder="Text Description"></textarea>
                 </div>
                 <a class="btn btn-danger btn-block"
-                   href="register.html">Register</a>
+                   ng-click="model.deleteWebsite()">Delete</a>
             </form>
             <nav class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container-fluid" >
                     <p class="navbar-text pull-right">
-                        <a href="profile.html" class="navbar-link">
+                        <a href="#/login" class="navbar-link">
                       <span class="glyphicon glyphicon-user">
                       </span>
                         </a>
@@ -111,5 +103,3 @@ I used two versions of the song and mixed them up. They are not mine, one is fro
         </div>
     </div>
 </div>
-</body>
-</html>

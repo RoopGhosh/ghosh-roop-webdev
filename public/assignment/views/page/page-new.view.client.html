@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Page New</title><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/widgetStyle.css" rel="stylesheet"/>
-</head>
-<body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class=" container-fluid row" >
@@ -34,12 +25,12 @@
                 <a class="navbar-brand" href="#">
                     New Page
                 </a>
-                <a href="#" class="navbar-link navbar-text pull-right visible-xs">
+                <a ng-click = "model.addPage(model.name,model.description)"class="navbar-link navbar-text pull-right visible-xs">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
             </div>
-            <a href="#" class="navbar-link navbar-text pull-right hidden-xs">
+            <a ng-click = "model.addPage(model.name,model.description)"class="navbar-link navbar-text pull-right hidden-xs">
           <span class="glyphicon glyphicon-ok">
           </span>
             </a>
@@ -86,16 +77,16 @@
         <div class="col-sm-9 col-sm-offset-3 main">
             <div class="form-group">
                 <label for="usr">Page name:</label>
-                <input type="text" class="form-control" id="usr" placeholder="Page Name">
+                <input ng-model="model.name" type="text" class="form-control" id="usr" placeholder="Page Name">
             </div>
             <div class="form-group">
                 <label for="Description">Title:</label>
-                <textarea class="form-control" rows="5" id="Description" placeholder="Title"></textarea>
+                <textarea ng-model="model.description"class="form-control" rows="5" id="Description" placeholder="Title"></textarea>
             </div>
             <nav class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container-fluid" >
                     <p class="navbar-text pull-right">
-                        <a href="profile.html" class="navbar-link">
+                        <a href="../user/profile.view.client.html" class="navbar-link">
           <span class="glyphicon glyphicon-user">
           </span>
                         </a>
@@ -105,5 +96,3 @@
         </div>
     </div>
 </div>
-</body>
-</html>

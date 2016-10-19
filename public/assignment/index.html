@@ -1,33 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"ng-app="WebAppMaker">
 <head>
     <meta charset="UTF-8">
+    <title>Web Dev Course Home Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <title>Assignment Home Page</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/widgetStyle.css" rel="stylesheet">
+    <script src = "app.js"></script>
+    <script src = "config.js"></script>
+    <script src = "views/user/user.controller.client.js"></script>
+    <script src = "views/website/website.controller.client.js"></script>
+    <script src = "views/page/page.controller.client.js"></script>
+    <script src = "views/widget/widget.controller.client.js"></script>
+    <script src = "services/user.service.client.js"></script>
+    <script src = "services/website.service.client.js"></script>
+    <script src = "services/page.service.client.js"></script>
+    <script src = "services/widget.service.client.js"></script>
 </head>
 <body>
-<h1> List of webpages</h1>
-<div class="container-fluid">
-    <p>
-        <a href="login.html" class="btn btn-primary ">login</a>
-        <a href="page-list.html" class="btn btn-primary ">page list</a>
-        <a href="page-edit.html" class="btn btn-primary ">page edit</a>
-        <a href="profile.html" class="btn btn-primary ">profile</a>
-        <a href="register.html" class="btn btn-primary ">register</a>
-        <a href="website-edit.html" class="btn btn-primary ">website edit</a>
-        <a href="website-list.html" class="btn btn-primary ">website-list</a>
-        <a href="website-new.html" class="btn btn-primary ">website-new</a>
-    </p>
-    <p>
-        <a href="page-new.html" class="btn btn-primary ">page new</a>
-        <a href="widget-image.html" class="btn btn-primary ">widget-image</a>
-        <a href="widget-list.html" class="btn btn-primary ">widget-list</a>
-        <a href="widget-chooser.html" class="btn btn-primary ">widget chooser</a>
-        <a href="widget-heading.html" class="btn btn-primary ">widget-heading</a>
-        <a href="widget-youtube.html" class="btn btn-primary ">widget youtube</a>
-    </p>
+ <div ng-view>
 
-
-</div>
+ </div>
 </body>
 </html>

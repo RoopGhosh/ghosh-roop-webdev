@@ -1,0 +1,97 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid" >
+        <a href="#" class="navbar-link navbar-text pull-left">
+          <span class="glyphicon glyphicon-menu-left">
+          </span>
+        </a>
+        <a class="navbar-brand" href="#">
+            Widget Edit
+        </a>
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link navbar-text pull-right">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+        </a>
+    </div>
+</nav>
+
+<div ng-repeat = "widget in model.widgets" class="container-fluid div-margin">
+    <div ng-switch = "widget.widgetType">
+        <div class="relative-position" ng-switch-when = "HEADER">
+                <div class="container-fluid zero-right-padding" ng-switch="widget.size">
+                    <h1 ng-switch-when = "1"class="col-xs-4" >{{widget.text}}</h1>
+                    <h2 ng-switch-when = "2"class="col-xs-4" >{{widget.text}}</h2>
+                    <h3 ng-switch-when = "3"class="col-xs-4" >{{widget.text}}</h3>
+                    <h4 ng-switch-when = "4"class="col-xs-4">{{widget.text}}</h4>
+                    <h5 ng-switch-when = "5"class="col-xs-4">{{widget.text}}</h5>
+                    <h6 ng-switch-when = "6"class="col-xs-4">{{widget.text}}</h6>
+                </div>
+                <div class="absolute-position list-element-menu zero-right-padding">
+                    <a href = "#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                </div>
+        </div>
+        <div class="container-fluid div-margin" ng-switch-when = "HTML">
+            <div class="relative-position">
+                <div class="container-fluid zero-right-padding" ng-bind-html='model.safeHtml(widget.text)'>
+                </div>
+                <div class="absolute-position list-element-menu zero-right-padding">
+                    <a href = "#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid div-margin" ng-switch-when = "YOUTUBE">
+            <div class="list-group">
+                <div class="relative-position">
+                    <div class="container-fluid zero-right-padding">
+                        <iframe width="90%" height=auto ng-src={{model.safeUrl(widget.url)}} class="embed-responsive-item"></iframe>
+                    </div>
+                    <div class="absolute-position list-element-menu zero-right-padding">
+                        <a href = "#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+                        <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid"  ng-switch-when = "IMAGE">
+            <div class="relative-position">
+                <div class="container-fluid zero-right-padding">
+                    <img class="img-responsive" ng-src={{model.safeUrlImage(widget.url)}} alt="Sample Image"/>
+                </div>
+                <div class="absolute-position list-element-menu zero-right-padding">
+                    <a href = "#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<div class="container-fluid div-margin">
+        <div class="relative-position">
+            <div class="container-fluid zero-right-padding">
+                <h4 class="col-xs-4">this is heading 4</h4>
+            </div>
+            <div class="absolute-position list-element-menu zero-right-padding">
+                <a href="#"><span class="glyphicon glyphicon-cog"></span></a>
+                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+            </div>
+    </div>
+</div>
+
+-->
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid" >
+        <p class="navbar-text pull-right">
+            <a href="../user/profile.view.client.html" class="navbar-link">
+                      <span class="glyphicon glyphicon-user">
+                      </span>
+            </a>
+        </p>
+    </div>
+</nav>
