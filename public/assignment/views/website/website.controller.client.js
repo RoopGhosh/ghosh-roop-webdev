@@ -16,7 +16,7 @@
     }
     function WebsiteControllerEdit($routeParams,WebsiteService,$location) {
         var vm = this;
-        var userId= $routeParams.uid;
+        vm.userId = $routeParams['uid'];
         var webSiteId = $routeParams.wid;
         vm.deleteWebsite = deleteWebsite;
         vm.updateWebsite = updateWebsite;
@@ -28,7 +28,7 @@
         function deleteWebsite(){
             var success = WebsiteService.deleteWebsite(webSiteId);
             if(success){
-                $location.url("/user/"+userId+"/website");
+                $location.url("/user/"+vm.userId+"/website");
             }else{
                 $location.url("/login");
             }
@@ -37,7 +37,7 @@
         function updateWebsite(name, description) {
             var success = WebsiteService.updateWebsite(webSiteId,name,description);
             if(success){
-                $location.url("/user/"+userId+"/website");
+                $location.url("/user/"+vm.userId+"/website");
             }else{
                 $location.url("/login");
             }
@@ -46,7 +46,7 @@
     
     function WebsiteControllerNew($routeParams,WebsiteService,$location) {
         var vm = this;
-        var userId= $routeParams.uid;
+        vm.userId = $routeParams['uid'];
         vm.addWebsite = addWebsite;
         function init(){
             console.log("websitecontrollerNew init");
@@ -55,7 +55,7 @@
         function addWebsite(name, description) {
             var success = WebsiteService.addWebsite(name,description,userId);
             if(success){
-                $location.url("/user/"+userId+"/website");
+                $location.url("/user/"+vm.userId+"/website");
             }else{
                 $location.url("/login");
             }

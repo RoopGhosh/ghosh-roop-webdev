@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid" >
-        <a href="#" class="navbar-link navbar-text pull-left">
+        <a href="#/user/{{model.userId}}/website" class="navbar-link navbar-text pull-left">
           <span class="glyphicon glyphicon-menu-left">
           </span>
         </a>
@@ -21,7 +21,7 @@
         <a href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}/widget">
             {{page.name}}
         </a>
-        <a href="#/user/{{model.userId}}/website/{{model.page.websiteId}}/page/{{model.page._id}}" class="pull-right">
+        <a href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}" class="pull-right">
           <span class="glyphicon glyphicon-cog">
           </span>
         </a>
@@ -31,7 +31,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid" >
         <p class="navbar-text pull-right">
-            <a href="../user/profile.view.client.html" class="navbar-link">
+            <a href="#/user/{{model.userId}}" class="navbar-link">
           <span class="glyphicon glyphicon-user">
           </span>
             </a>

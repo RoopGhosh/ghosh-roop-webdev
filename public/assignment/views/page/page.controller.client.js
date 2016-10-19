@@ -19,6 +19,7 @@
         var vm = this;
         var websiteId = $routeParams['wid'];
         var pageId = $routeParams['pid'];
+        vm.userId = $routeParams['uid'];
         vm.deletePage = deletePage;
         vm.updatePage = updatePage;
         vm.userId = $routeParams['uid'];
@@ -47,7 +48,7 @@
     }
         function PageControllerNew($routeParams,PageService,$location) {
             var vm = this;
-            var userId = $routeParams.uid;
+            vm.userId = $routeParams['uid'];
             var websiteId = $routeParams['wid'];
             vm.addPage = addPage;
             function init() {
