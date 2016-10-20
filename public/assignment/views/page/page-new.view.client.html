@@ -11,7 +11,7 @@
                     Pages
                 </a>
             </div>
-            <a class="navbar-brand pull-right" href="#">
+            <a class="navbar-brand pull-right" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
             <span class="glyphicon glyphicon-plus ">
           </span>
             </a>
@@ -43,31 +43,11 @@
     <div class="row">
         <div class="col-sm-3 sidebar">
             <ul class="nav nav-sidebar">
-                <li><div class="container-fluid">
-                    <a class="" href="#">
-                        Page 1
+                <li ng-repeat="page in model.pages"><div class="container-fluid">
+                    <a class="" href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}/widget">
+                        {{page.name}}
                     </a>
-                    <a href="#" class="pull-right">
-                      <span class="glyphicon glyphicon-cog">
-                      </span>
-                    </a>
-                </div></li>
-                <br>
-                <li><div class="container-fluid">
-                    <a class="" href="#">
-                        Page 2
-                    </a>
-                    <a href="#" class="pull-right">
-                      <span class="glyphicon glyphicon-cog">
-                      </span>
-                    </a>
-                </div></li>
-                <br>
-                <li><div class="container-fluid">
-                    <a class="" href="#">
-                        Page 3
-                    </a>
-                    <a href="#" class="pull-right">
+                    <a href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}" class="pull-right">
                       <span class="glyphicon glyphicon-cog">
                       </span>
                     </a>

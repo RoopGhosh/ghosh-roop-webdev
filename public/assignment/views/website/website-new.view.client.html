@@ -43,31 +43,11 @@
     <div class="row">
         <div class="col-sm-3 sidebar">
             <ul class="nav nav-sidebar">
-                <li><div class="container-fluid">
-                    <a class="" href="#">
-                        Site 1
+                <li ng-repeat = "website in model.websites"><div class="container-fluid">
+                    <a class="" href="#/user/{{model.userId}}/website/{{website._id}}/page">
+                        {{website.name}}
                     </a>
-                    <a href="#" class="pull-right">
-                      <span class="glyphicon glyphicon-cog">
-                      </span>
-                    </a>
-                </div></li>
-                <br>
-                <li><div class="container-fluid">
-                    <a class="" href="#">
-                        Site 2
-                    </a>
-                    <a href="#" class="pull-right">
-                      <span class="glyphicon glyphicon-cog">
-                      </span>
-                    </a>
-                </div></li>
-                <br>
-                <li><div class="container-fluid">
-                    <a class="" href="#">
-                        Site 3
-                    </a>
-                    <a href="#" class="pull-right">
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
                       <span class="glyphicon glyphicon-cog">
                       </span>
                     </a>

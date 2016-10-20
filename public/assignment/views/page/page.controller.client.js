@@ -25,6 +25,7 @@
         vm.userId = $routeParams['uid'];
         function init() {
             vm.page = PageService.getPageById(pageId);
+            vm.pages = PageService.getPageByWebsiteId(websiteId);
         }
         init();
 
@@ -49,10 +50,10 @@
         function PageControllerNew($routeParams,PageService,$location) {
             var vm = this;
             vm.userId = $routeParams['uid'];
-            var websiteId = $routeParams['wid'];
+            vm.websiteId = $routeParams['wid'];
             vm.addPage = addPage;
             function init() {
-                console.log("PagecontrollerNew init");
+                vm.pages = PageService.getPageByWebsiteId(vm.websiteId);
             }
 
             init();

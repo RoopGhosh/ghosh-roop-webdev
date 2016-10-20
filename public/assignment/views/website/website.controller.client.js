@@ -22,6 +22,7 @@
         vm.updateWebsite = updateWebsite;
         function init(){
             vm.website = WebsiteService.getWebsiteById(webSiteId);
+            vm.websites = WebsiteService.getWebsiteByUserId(vm.userId);
         }
         init();
 
@@ -49,7 +50,7 @@
         vm.userId = $routeParams['uid'];
         vm.addWebsite = addWebsite;
         function init(){
-            console.log("websitecontrollerNew init");
+            vm.websites = WebsiteService.getWebsiteByUserId(vm.userId);
         }
         init();
         function addWebsite(name, description) {

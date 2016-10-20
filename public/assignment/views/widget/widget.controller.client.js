@@ -39,11 +39,18 @@
         vm.uid = $routeParams['uid'];
         vm.wid= $routeParams['wid'];
         vm.wgid= $routeParams['wgid'];
+        vm.updateWidget =updateWidget;
         vm.widgetType = $routeParams['widgetType'];
         function init() {
             vm.widget = WidgetService.findWidgetById(vm.wgid);
         }
         init();
+        function updateWidget(id,widgetType,obj,size) {
+            var success = WidgetService.updateWidget(id,widgetType,obj,size,vm.pid);
+            if(success){
+                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+            }
+        }
     }
 
     function WidgetControllerChooser($routeParams,WidgetService,$location) {

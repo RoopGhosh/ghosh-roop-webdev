@@ -22,7 +22,8 @@
         var api = {
             findWidgetsByPageId:findWidgetsByPageId,
             findWidgetById:findWidgetById,
-            addWidget:addWidget
+            addWidget:addWidget,
+            updateWidget:updateWidget
         }
         return api;
 
@@ -72,6 +73,33 @@
             }
             widgets.push(widget);
             return widget;
+        }
+
+        function updateWidget(id,widgetType,obj,size,pid) {
+            var widget;
+            for(w in widgets){
+                if(widgets[w]._id===id){
+                    switch(widgetType) {
+                        case "HEADER":
+                            widget = { "_id": id, "widgetType": "HEADER", "pageId": pid, "size": size, "text": obj};
+                            break;
+                        case "YOUTUBE":
+                            widget = { "_id": id, "widgetType": "YOUTUBE", "pageId": pid, "width": size,
+                                "url": obj};
+                            break;
+                        case "HTML":
+                            widget = { "_id": id, "widgetType": "HTML", "pageId": pid, "text": obj};
+                            break;
+                        case "IMAGE":
+                            widget = { "_id": id, "widgetType": "IMAGE", "pageId": pid, "width": size,
+                                "url": obj};
+                            break;
+                    }
+                    widgets[w]=widget;
+                    return true;
+                }
+            }
+            return false;
         }
     }
 })();
