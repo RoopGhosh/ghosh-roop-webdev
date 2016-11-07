@@ -18,7 +18,13 @@
         vm.safeUrl = safeUrl;
         vm.safeUrlImage = safeUrlImage;
         function init(){
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+           WidgetService.findWidgetsByPageId(vm.pid,vm.uid,vm.wid)
+               .success(function (response){
+                   vm.widgets= response;
+               })
+               .error(function (error) {
+                   console.log(error);
+               });
         }
         init();
         function safeHtml(text){
@@ -40,16 +46,38 @@
         vm.wid= $routeParams['wid'];
         vm.wgid= $routeParams['wgid'];
         vm.updateWidget =updateWidget;
+        vm.deleteWidget = deleteWidget;
         vm.widgetType = $routeParams['widgetType'];
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.wgid);
+            WidgetService.findWidgetById(vm.wid,vm.uid,vm.pid,vm.wgid)
+                .success(function (res) {
+                    vm.widget = res;
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
         }
         init();
         function updateWidget(id,widgetType,obj,size) {
-            var success = WidgetService.updateWidget(id,widgetType,obj,size,vm.pid);
-            if(success){
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
-            }
+            WidgetService.updateWidget(id,widgetType,obj,size,vm.pid,vm.uid,vm.wid)
+                .success(function (res){
+                    $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        }
+
+        function  deleteWidget() {
+            WidgetService.deleteWidget(vm.pid,vm.uid,vm.wid,vm.wgid)
+                .success(function(){
+                    console.log("here");
+                    $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+                })
+                .error(function (error) {
+                    console.log("error");
+                    console.log(error);
+                });
         }
     }
 
@@ -64,12 +92,14 @@
         }
         init();
         function clickItem(widgetType) {
-            var item = WidgetService.addWidget(widgetType,vm.pid);
-            if(item!=null){
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+item._id);
-            }else{
-                //todo
-            }
+           WidgetService.addWidget(widgetType,vm.pid,vm.uid,vm.wid)
+               .success(function (res) {
+                   var item = res;
+                   $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+item._id);
+               })
+               .error(function (error) {
+                   console.log(error);
+               });
         }
     }
 

@@ -6,46 +6,39 @@
         .module("WebAppMaker")
         .factory("UserService",UserService);
     
-    function UserService() {
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-        ];
+    function UserService($http) {
         var api = {
             findUserbyCredentials:findUserbyCredentials,
             findUserbyUserId:findUserbyUserId,
-            addUser:addUser
+            addUser:addUser,
+            updateUser:updateUser,
+            deleteUser:deleteUser
         }
         return api;
 
-        function findUserbyCredentials(username,password) {
-            for(user in users){
-                if(users[user].username===username && users[user].password===password){
-                    return users[user];
-                }
-            }
+
+        function  deleteUser(userId) {
+            return $http.delete("/api/user/"+userId);
         }
+        function updateUser(user) {
+            return $http.put("/api/user/",user);
+        }
+
+        function findUserbyCredentials(username,password) {
+            var user = {
+                username: username,
+                password : password
+            };
+            return $http.post("/api/user/",user);
+        }
+
         function findUserbyUserId(userId) {
-            console.log("finduserbyuserID: "+ userId);
-            for(user in users){
-                if(users[user]._id===userId){
-                    return users[user];
-                }
-            }
+            return $http.get("/api/user/"+userId);
         }
 
         function addUser(username, password) {
-            var temp = Number.MIN_VALUE;
-            for(u in users){
-                if(users[u]._id>temp){
-                    temp = users[u]._id;
-                }
-            }
-            var user = {_id:++temp+'',username:username,password:password,firstName:username+temp,lastName:username+temp};
-            users.push(user);
-            return user;
+            var user = {username : username,password:password};
+            return $http.post("/api/user/new",user);
         }
     }
 })();

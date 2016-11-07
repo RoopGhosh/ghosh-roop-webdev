@@ -85,8 +85,6 @@
                 controllerAs:"model",
                 factory:"WidgetService"
             })
-
-
             .otherwise({
                 redirectTo:"/login"
             });

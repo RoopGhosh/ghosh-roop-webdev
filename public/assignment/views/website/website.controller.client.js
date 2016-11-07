@@ -9,7 +9,13 @@
         var vm = this;
         vm.userId= $routeParams.uid;
         function init(){
-            vm.websites = WebsiteService.getWebsiteByUserId(vm.userId);
+            WebsiteService.getWebsiteByUserId(vm.userId)
+                .success(function (website){
+                    vm.websites = website;
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
         }
         init();
 
@@ -21,27 +27,41 @@
         vm.deleteWebsite = deleteWebsite;
         vm.updateWebsite = updateWebsite;
         function init(){
-            vm.website = WebsiteService.getWebsiteById(webSiteId);
-            vm.websites = WebsiteService.getWebsiteByUserId(vm.userId);
+                WebsiteService.getWebsiteById(webSiteId,vm.userId)
+                    .success(function (response){
+                vm.website = response;
+            })
+                    .error(function (error) {
+                        console.log(error);
+                    });
+             WebsiteService.getWebsiteByUserId(vm.userId)
+                 .success(function (response) {
+                     vm.websites = response;
+                 })
+                 .error(function (error) {
+                     console.log(error);
+                 });
         }
         init();
 
         function deleteWebsite(){
-            var success = WebsiteService.deleteWebsite(webSiteId);
-            if(success){
-                $location.url("/user/"+vm.userId+"/website");
-            }else{
-                $location.url("/login");
-            }
+           WebsiteService.deleteWebsite(webSiteId,vm.userId)
+               .success(function () {
+                   $location.url("/user/"+vm.userId+"/website");
+               })
+               .error(function(){
+                   $location.url("/login");
+               });
         }
 
         function updateWebsite(name, description) {
-            var success = WebsiteService.updateWebsite(webSiteId,name,description);
-            if(success){
-                $location.url("/user/"+vm.userId+"/website");
-            }else{
-                $location.url("/login");
-            }
+           WebsiteService.updateWebsite(webSiteId,name,description,vm.userId)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website");
+                })
+                .error(function(){
+                        $location.url("/login");
+                });
         }
     }
     
@@ -50,16 +70,25 @@
         vm.userId = $routeParams['uid'];
         vm.addWebsite = addWebsite;
         function init(){
-            vm.websites = WebsiteService.getWebsiteByUserId(vm.userId);
+            WebsiteService.getWebsiteByUserId(vm.userId)
+                .success(function (response) {
+                    vm.websites = response;
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
         }
         init();
         function addWebsite(name, description) {
-            var success = WebsiteService.addWebsite(name,description,userId);
-            if(success){
-                $location.url("/user/"+vm.userId+"/website");
-            }else{
-                $location.url("/login");
-            }
+        WebsiteService.addWebsite(name,description,vm.userId)
+                .success(function (response) {
+                    console.log(response);
+                    $location.url("/user/"+vm.userId+"/website");
+                })
+                .error(function (error){
+                   console.log(error);
+                    $location.url("/login");
+                });
         }
     }
 })();
