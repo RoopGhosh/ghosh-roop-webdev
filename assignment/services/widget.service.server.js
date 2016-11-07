@@ -50,17 +50,17 @@ module.exports = function (app) {
         var spliceEnd;
         for(w in widgets){
             if(widgets[w].pageId === pid){
+                if(count==start){
+                    spliceStart = w;
+                }
+                if(count==end){
+                    spliceEnd= w;
+                }
                 count++;
-            }
-            if(count==start){
-                spliceStart = count;
-            }
-            if(count==end){
-                spliceEnd= count;
             }
         }
 
-        widgets.splice(spliceEnd,0,widgets.splice(spliceStart,1)[0]);
+         widgets.splice(spliceEnd,0,widgets.splice(spliceStart,1)[0]);
         return res.send(200);
     }
 
