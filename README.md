@@ -8,4 +8,4 @@
 1. browse to localhost:3000
 
 
-.test
+.test2
