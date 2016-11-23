@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app,model) {
     var websites = [
         { "_id": "123", "name": "Facebook",    "developerId": "456" },
         { "_id": "234", "name": "Tweeter",     "developerId": "456" },
@@ -18,41 +18,69 @@ module.exports = function (app) {
 
     function getWebsiteByUserId(req,res){
         var userid = req.params.uid;
-        var list=[];
-        for(w in websites){
-            if(websites[w].developerId === userid){
-                list.push(websites[w]);
-            }
-        }
-        return res.status(200).send(list);
+        model.websiteModel.findWebsiteByUserId(userid)
+            .then(
+                function (body) {
+                    res.send(body);
+                },
+                function (error){
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
     function getWebsiteById(req,res){
         var websiteId = req.params.wid;
-        for(w in websites){
+        model.websiteModel.findWebsiteById(websiteId)
+            .then(
+                function (body) {
+                    res.send(body);
+                },
+                function (error){
+                    res.sendStatus(400).send(error);
+                }
+            );
+        /*for(w in websites){
             if(websites[w]._id === websiteId){
                 return res.status(200).send(websites[w]);
             }
         }
-        return res.status(400).send(null);
+        return res.status(400).send(null);*/
     }
 
     function deleteWebsite(req,res){
         var websiteId = req.params.wid;
-        for(w in websites){
+        model.websiteModel.deleteWebsite(websiteId)
+            .then(
+                function (body) {
+                    res.send(body);
+                },
+                function (error){
+                    res.sendStatus(400).send(error);
+                }
+            );
+        /*for(w in websites){
             if(websites[w]._id === websiteId){
                 websites.splice(w,1);
                 return res.status(200);
             }
         }
-        return res.status(400);
+        return res.status(400);*/
     }
 
     function updateWebsite(req,res){
         var website = req.body;
         var websiteId = req.params.wid;
-        var name = website.name;
-        var description = website.description;
+        model.websiteModel.updateWebsite(websiteId,website)
+            .then(
+                function (body) {
+                    res.send(body);
+                },
+                function (error){
+                    res.sendStatus(400).send(error);
+                }
+            );
+        /*var description = website.description;
         for(w in websites){
             if(websites[w]._id === websiteId){
                 var website = {_id:websites[w]._id,name:name,developerId:websites[w].developerId};
@@ -60,21 +88,24 @@ module.exports = function (app) {
                 return res.status(200).send(website[w]);
             }
         }
-        return res.status(400);
+        return res.status(400);*/
     }
 
     function addWebsite(req,res) {
         var website = req.body;
         var name = website.name;
         var developerId= req.params.uid;
-        var temp = Number.MIN_VALUE;
-        for(w in websites){
-            if(websites[w]._id>temp){
-                temp = websites[w]._id;
-            }
-        }
-        var website = {_id:++temp+'',name:name,developerId:developerId};
-        websites.push(website);
-        return res.status(200).send(website);
+        var website = {name:name};
+        model.websiteModel.createWebsite(developerId,website)
+            .then(
+                function (websiteObj) {
+                    websiteObj._user = developerId;
+                    websiteObj.save();
+                    res.send(websiteObj);
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 }

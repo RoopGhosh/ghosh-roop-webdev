@@ -43,7 +43,7 @@
         <div class="relative-position div-margin" ng-switch-when = "YOUTUBE">
             <div class="list-group">
                     <div class="container-fluid zero-right-padding">
-                        <iframe width="90%" height=auto ng-src={{model.safeUrl(widget.url)}} class="embed-responsive-item"></iframe>
+                        <iframe class = "sortable" width="90%" height=auto ng-src={{model.safeUrl(widget.url)}} class="embed-responsive-item"></iframe>
                     </div>
                     <div class="absolute-position list-element-menu zero-right-padding">
                         <a href = "#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>

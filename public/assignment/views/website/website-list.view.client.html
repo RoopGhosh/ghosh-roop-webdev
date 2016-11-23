@@ -17,10 +17,10 @@
 <div class="container-fluid">
     <div ng-repeat = 'website in model.websites' class="container-fluid nav-pills">
         <br>
-        <a href="#/user/{{website.developerId}}/website/{{website._id}}/page">
+        <a href="#/user/{{website._user}}/website/{{website._id}}/page">
             {{website.name}}
         </a>
-        <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
+        <a href="#/user/{{website._user}}/website/{{website._id}}" class="pull-right">
           <span class="glyphicon glyphicon-cog">
           </span>
         </a>

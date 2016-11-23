@@ -39,7 +39,7 @@
         function updateUser(user){
             var promise = UserService.updateUser(user);
             promise
-                .success(function(user){
+                .success(function(res){
                     $location.url("/user/"+user._id);
                 })
                 .error(function(body) {
