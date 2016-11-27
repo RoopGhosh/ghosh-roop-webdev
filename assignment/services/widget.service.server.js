@@ -23,7 +23,7 @@ module.exports = function (app,model) {
     app.put("/api/user/:uid/website/:wid/page/:pid/widget/:wgid",updateWidget);
     app.delete("/api/user/:uid/website/:wid/page/:pid/widget/:wgid",deleteWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
-    app.put ("/api/:pid/widgetsort", sortWidget);
+    app.put ("/api/:pid/widget", sortWidget);
 
 
     function deleteWidget(req,res){
@@ -57,6 +57,52 @@ module.exports = function (app,model) {
         var count = 0;
         var spliceStart;
         var spliceEnd;
+        if (start > end) {
+            var diff = 1;
+        } else {
+            var diff = -1;
+        }
+        var result ;
+            //was moved down//ulta now
+            //code for changing the start to end.
+            model.widgetModel.findOrderByIdAndOrder(pid,start,end)
+                .then(
+                    function (resp) {
+                        model.widgetModel.updateOrder(resp._doc._id.toString(),end)
+                            .then(
+                                function (){
+                                    if(diff>0){
+                                        model.widgetModel.findWidgetsGreaterThanOrder(pid,end)
+                                            .then(
+                                                function (smallerOrderWidget) {
+                                                    iterator(smallerOrderWidget, resp._doc._id.toString(),diff);
+                                                },
+                                                function (error) {
+                                                    widgets = null;
+                                                }
+                                            )
+                                    }else{
+                                        model.widgetModel.findWidgetSmallerThanOrder(pid,end)
+                                            .then(
+                                                function (smallerOrderWidget) {
+                                                    iterator(smallerOrderWidget,resp._doc._id.toString(),diff);
+                                                },
+                                                function (error) {
+                                                    widgets = null;
+                                                }
+
+                                            )
+                                    }
+                                }
+
+                        //increment all the widgets with order>=end
+                        )
+                    },
+                    function (error) {
+
+                    }
+    );
+        /*
         for(w in widgets){
             if(widgets[w].pageId === pid){
                 if(count==start){
@@ -70,8 +116,31 @@ module.exports = function (app,model) {
         }
 
          widgets.splice(spliceEnd,0,widgets.splice(spliceStart,1)[0]);
-        return res.send(200);
+        return res.send(200);*/
     }
+
+
+    function iterator(response,id,diff) {
+            widget = response;
+                for (wid in widget) {
+                    if (widget[wid] != null) {
+                        if(widget[wid]._doc._id.toString() == id){
+                            continue;
+                        }
+                    model.widgetModel.updateOrder(widget[wid]._doc._id.toString(),widget[wid]._doc.order + diff)
+                        .then(
+                            function (resp) {
+
+                            },
+                            function (error) {
+                                res.sendStatus(400).send(error);
+                            }
+                        );
+                }
+            }
+        }
+
+
 
     function findWidgetsByPageId(req,res){
         var pid = req.params['pid'];
@@ -118,23 +187,28 @@ module.exports = function (app,model) {
         var widget;
         switch(obj.widgetType) {
             case "HEADER":
-                widget = {"widgetType": "HEADER", "size": 2, "text": ""};
+                widget = {"widgetType": "HEADER", "size": 2, "text": "",order:obj.order};
                 break;
             case "YOUTUBE":
                 widget = {"widgetType": "YOUTUBE",  "width": "100%",
-                    "url": "" };
+                    "url": "" ,"date": Date.now(),order:obj.order};
                 break;
             case "HTML":
-                widget = {"widgetType": "HTML","text": ""};
+                widget = {"widgetType": "HTML","text": "",order:obj.order};
                 break;
             case "IMAGE":
                 widget = {"widgetType": "IMAGE", "width": "100%",
-                    "url": ""};
+                    "url": "",order:obj.order};
+                break;
+            case "TEXT":
+                widget = {"widgetType": "TEXT", "width": "100%",
+                    "url": "",order:obj.order};
                 break;
         }
         model.widgetModel.createWidget(widget)
             .then(
                 function (response) {
+
                     response._page = obj.pid;
                     response.save();
                     res.send(response);
@@ -165,6 +239,16 @@ module.exports = function (app,model) {
                 widget = {"widgetType": "IMAGE", "pageId": obj.pid, "width": obj.size,
                     "url": obj.text};
                 break;
+            case "TEXT":
+                var formatted;
+                if(obj.formatted==null){
+                    formatted=false;
+                }else{
+                    formatted = obj.formatted;
+                }
+                widget = {"widgetType": "TEXT", "pageId": obj.pid, "width": obj.size,
+                    "text": obj.text,"placeholder": obj.placeholder,"rows": obj.rows,"formatted":formatted};
+                break;
         }
         model.widgetModel.updateWidget(obj._id,widget)
             .then(
@@ -172,7 +256,7 @@ module.exports = function (app,model) {
                     res.send(response);
                 },
                 function (error) {
-                    res.sendStatus(400).send(200);
+                    res.sendStatus(400).send(error);
                 }
             );
                 /*widgets[w]=widget;

@@ -7,7 +7,7 @@
         <a class="navbar-brand" href="">
             Widget List
         </a>
-        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link navbar-text pull-right">
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new?size={{model.widgets.length}}" class="navbar-link navbar-text pull-right">
           <span class="glyphicon glyphicon-plus">
           </span>
         </a>
@@ -42,8 +42,8 @@
         </div>
         <div class="relative-position div-margin" ng-switch-when = "YOUTUBE">
             <div class="list-group">
-                    <div class="container-fluid zero-right-padding">
-                        <iframe class = "sortable" width="90%" height=auto ng-src={{model.safeUrl(widget.url)}} class="embed-responsive-item"></iframe>
+                    <div class="container-fluid zero-right-padding youtube-widget">
+                        <iframe class = "sortable " width="90%" height=auto ng-src={{model.safeUrl(widget.url)}} class="embed-responsive-item"></iframe>
                     </div>
                     <div class="absolute-position list-element-menu zero-right-padding">
                         <a href = "#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
@@ -60,6 +60,19 @@
                     <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                 </div>
         </div>
+        <div class="relative-position div-margin"  ng-switch-when="TEXT">
+            <div ng-if="widget.formatted" text-angular ta-toolbar="..."></div>
+            <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                   placeholder="{{widget.textInput.placeholder}}" class="form-control"/>
+            <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                      rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                      class="form-control">{{widget.text}}</textarea>
+            <div class="absolute-position list-element-menu zero-right-padding">
+                <a href = "#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+            </div>
+        </div>
+
     </div>
 </div>
 </ul>

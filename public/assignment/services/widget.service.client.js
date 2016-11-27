@@ -24,7 +24,7 @@
         }
 
         function sort(start,end,pid){
-            return $http.put("/api/"+pid+"/widgetsort?START="+start+"&END="+end);
+            return $http.put("/api/"+pid+"/widget?START="+start+"&END="+end);
         }
         function findWidgetsByPageId(pid,uid,wid) {
             return $http.get("/api/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/");
@@ -34,13 +34,18 @@
            return $http.get("/api/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+wgid);
         }
 
-        function addWidget(widgetType,pid,uid,wid) {
-            var widget = { "widgetType": widgetType, "pid": pid};
+        function addWidget(widgetType,pid,uid,wid,count) {
+            var widget = { "widgetType": widgetType, "pid": pid,order:count};
             return $http.post("/api/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/new",widget);
         }
 
         function updateWidget(id,widgetType,obj,size,pid,uid,wid) {
-            var widget = { "_id": id, "widgetType": widgetType, "pid": pid, "size": size, "text": obj};
+            if(widgetType=='TEXT'){
+                var widget = { "_id": id, "widgetType": widgetType, "pid": pid, "size": size,
+                    "text": obj.text,"rows": obj.rows,"formatted": obj.formatted,"placeholder": obj.placeholder};
+            }else{
+                var widget = { "_id": id, "widgetType": widgetType, "pid": pid, "size": size, "text": obj};
+            }
             return $http.put("/api/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+id,widget);
         }
     }

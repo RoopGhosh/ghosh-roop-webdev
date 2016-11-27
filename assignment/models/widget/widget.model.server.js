@@ -8,9 +8,47 @@ module.exports = function () {
         getWidgetByPageId:getWidgetByPageId,
         getWidgetById:getWidgetById,
         updateWidget:updateWidget,
-        deleteWidget:deleteWidget
+        deleteWidget:deleteWidget,
+        findOrderByIdAndOrder:findOrderByIdAndOrder,
+        updateOrder:updateOrder,
+        findWidgetsGreaterThanOrder:findWidgetsGreaterThanOrder,
+        findWidgetSmallerThanOrder:findWidgetSmallerThanOrder
+        
     }
     return api;
+
+    function findWidgetsGreaterThanOrder(pid,end) {
+        return WidgetModel.find(
+        {
+            _page:pid,
+            order:{$lt:end+1}
+        }
+        );
+    }
+    
+    function findWidgetSmallerThanOrder(pid,end) {
+        return WidgetModel.find(
+            {
+                _page:pid,
+                order:{$gt:end-1}
+            }
+        );
+    }
+    
+    function updateOrder(id,end) {
+        return WidgetModel.update(
+            {
+                _id: id
+            },
+            {
+                order:end
+            }
+        );
+    }
+
+    function findOrderByIdAndOrder(pid,start){
+        return WidgetModel.findOne({_page:pid,order:start});
+    }
 
     function createWidget(widget) {
         return WidgetModel.create(widget);
@@ -18,7 +56,7 @@ module.exports = function () {
     function getWidgetByPageId(id) {
         return WidgetModel.find({
             _page:id
-        });
+        }).sort('order');
     }
 
     function getWidgetById(id) {
@@ -26,7 +64,7 @@ module.exports = function () {
     }
 
     function updateWidget(id,widget) {
-        if(widget.widgetType=='HEADER'|| widget.widgetType=='TEXT'){
+        if(widget.widgetType=='HEADER'){
             return WidgetModel.update(
                 {
                     _id:id
@@ -34,7 +72,7 @@ module.exports = function () {
                 {
                     name:widget.name,
                     size:widget.size,
-                    text:widget.text
+                    text:widget.text,
                 }
             );
         }
@@ -46,7 +84,7 @@ module.exports = function () {
                 {
                     name:widget.name,
                     width:widget.width,
-                    url:widget.url
+                    url:widget.url,
                 }
             );
         }
@@ -57,7 +95,20 @@ module.exports = function () {
                 },
                 {
                     name:widget.name,
-                    text:widget.text
+                    text:widget.text,
+                }
+            );
+        }
+        if(widget.widgetType=='TEXT') {
+            return WidgetModel.update(
+                {
+                    _id:id
+                },
+                {
+                    text:widget.text,
+                    rows:widget.rows,
+                    placeholder:widget.placeholder,
+                    formatted:widget.formatted
                 }
             );
         }

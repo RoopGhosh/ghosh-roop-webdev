@@ -86,13 +86,14 @@
         vm.uid = $routeParams['uid'];
         vm.wid = $routeParams['wid'];
         vm.pid = $routeParams['pid'];
+        vm.count = $routeParams['size'];
         vm.clickItem = clickItem;
         function init(){
 
         }
         init();
         function clickItem(widgetType) {
-           WidgetService.addWidget(widgetType,vm.pid,vm.uid,vm.wid)
+           WidgetService.addWidget(widgetType,vm.pid,vm.uid,vm.wid,vm.count)
                .success(function (res) {
                    var item = res;
                    $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+item._id);

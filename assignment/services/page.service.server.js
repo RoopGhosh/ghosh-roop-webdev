@@ -22,7 +22,6 @@ module.exports = function (app,model) {
                     res.sendStatus(400).send(error);
                 }
             );
-
         /*
         var arr = [];
         for(p in pages){
