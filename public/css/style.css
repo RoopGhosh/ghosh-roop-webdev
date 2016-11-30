@@ -1,0 +1,13 @@
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #ef0c0c;
+}
+
+.navbar-inverse {
+    background-color: #9a0d0d;
+    border-color: #a70909;
+}
+
+body {
+    color: #730505;
+    background-color: #fff;
+}
