@@ -55,6 +55,10 @@
         }
 
         function updateWebsite(name, description) {
+            if(name==null||name==""){
+                vm.error = "please enter a name for website";
+                return;
+            }
            WebsiteService.updateWebsite(webSiteId,name,description,vm.userId)
                 .success(function () {
                     $location.url("/user/"+vm.userId+"/website");
@@ -80,6 +84,10 @@
         }
         init();
         function addWebsite(name, description) {
+            if(name==null){
+                vm.error = "please enter a name for website";
+                return;
+            }
         WebsiteService.addWebsite(name,description,vm.userId)
                 .success(function (response) {
                     console.log(response);

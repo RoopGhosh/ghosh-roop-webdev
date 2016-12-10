@@ -58,6 +58,10 @@
         }
 
         function updatePage(name, description) {
+            if(name==null||name==""){
+                vm.error = "please enter a name for website";
+                return;
+            }
            PageService.updatePage(name,description,pageId,websiteId,vm.userId)
                 .success(function (res) {
                     $location.url("/user/" + vm.userId + "/website/" + websiteId + "/page");
@@ -84,6 +88,10 @@
             }
             init();
             function addPage(name, description) {
+                if(name==null||name==""){
+                    vm.error = "please enter a name for page";
+                    return;
+                }
                PageService.addPage(name, description, vm.websiteId,vm.userId)
                    .success(function(res){
                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");

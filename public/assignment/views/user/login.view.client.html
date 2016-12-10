@@ -1,14 +1,32 @@
 
     <div class="container">
         <h1>Login</h1>
-        <div ng-show = "model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
-        <input ng-model="model.username" type="text"
-               class="form-control"
-               placeholder="username"/>
-        <input ng-model="model.password"type="password"
-               class="form-control"
-               placeholder="password"/>
-        <a ng-click= "model.login(model.username,model.password)" class="btn btn-primary btn-block">Login</a>
-        <a class="btn btn-success btn-block"
-           href="#/register">Register</a>
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+        <div ng-show="loginForm.$invalid && loginForm.$submitted" class="alert alert-danger" role="alert">
+            Required fields are missing.
+            <li ng-show="loginForm.username.$invalid">Username not found</li>
+            <li ng-show="loginForm.password.$invalid">Password not found.</li>
+        </div>
+        <form name="loginForm" novalidate>
+            <input name = "username" ng-model="model.username" type="text"
+                   class="form-control" required
+                   placeholder="username"
+                   required
+                   autocorrect="off"
+                   autocapitalize="off"/>
+            <div ng-show="loginForm.username.$invalid && loginForm.$submitted" class="error">Username is required</div>
+            <input name = "password" ng-model="model.password"type="password"
+                   class="form-control" required
+                   placeholder="password"/>
+            <div ng-show="loginForm.password.$invalid && loginForm.$submitted" class="error">Password is required</div>
+            <button type="submit" ng-click="model.login(model.username, model.password)" class="btn btn-primary btn-block">Login</button>
+            <a class="btn btn-success btn-block"
+               href="#/register">Register</a>
+            <a href="/auth/google" class="btn btn-danger btn-block">
+                <span class="fa fa-google-plus"></span>
+                Google
+            </a>
+        </form>
     </div>

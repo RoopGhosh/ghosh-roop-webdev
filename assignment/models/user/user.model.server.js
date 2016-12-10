@@ -8,10 +8,16 @@ module.exports = function () {
         findUserById:findUserById,
         findUserbyCredentials:findUserbyCredentials,
         deleteUser:deleteUser,
-        updateUser:updateUser
+        updateUser:updateUser,
+        findUserByGoogleId: findUserByGoogleId
     }
     return api;
 
+    function findUserByGoogleId(googleId) {
+        return UserModel.findOne({'google.id': googleId});
+
+    }
+    
     function findUserById(id) {
         return UserModel.findById(id);
     }

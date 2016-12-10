@@ -59,6 +59,10 @@
         }
         init();
         function updateWidget(id,widgetType,obj,size) {
+            if(id==null || id==""){
+                vm.error = "please enter a widget name"
+                return;
+            }
             WidgetService.updateWidget(id,widgetType,obj,size,vm.pid,vm.uid,vm.wid)
                 .success(function (res){
                     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
