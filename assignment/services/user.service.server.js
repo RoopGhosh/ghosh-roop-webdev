@@ -36,9 +36,9 @@ module.exports = function (app,model) {
         }));
 
     var googleConfig = {
-        clientID     : '386397546436-p05skr626rqua6lm3ht7la1ibniecebu.apps.googleusercontent.com',
-        clientSecret : 'wYd4R_LuiBQxGq-hgxrYkr_J',
-        callbackURL  : 'http://localhost:3000/auth/google/callback'
+        clientID     : process.env.clientID||'386397546436-p05skr626rqua6lm3ht7la1ibniecebu.apps.googleusercontent.com',
+        clientSecret : process.env.clientSecret||'wYd4R_LuiBQxGq-hgxrYkr_J',
+        callbackURL  : process.env.callbackURL||'http://localhost:3000/auth/google/callback'
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
