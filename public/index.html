@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assignment/css/hover.css">
+    <link rel="stylesheet" href="assignment/css/demo-page.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
 <title>Roop Ghosh - Profile</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="assignment/css/hover.css">
-<link rel="stylesheet" href="assignment/css/demo-page.css">
 
 <style>
     html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 </style>
 <body class="w3-light-grey">
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Music Unity</h4>
+            </div>
+            <div class="modal-body container">
+                Howdy!! <br>
+                Are you looking for my web-dev project?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" class="btn btn-default" data-dismiss="modal">No Thanks</button>
+                <a class="btn btn-success" href="http://playmymusic-widowmaker.rhcloud.com/project">Take me there!</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    setTimeout(function() {
+        $('#myModal').modal();
+    }, 10000);
+</script>
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
 
@@ -160,8 +188,8 @@
     </div>
 
     <!-- End Page Container -->
-</div>
 
+</div>
 <footer class="w3-container w3-teal w3-center w3-margin-top">
     <p>Copyright 2016 by Roop Kumar Ghosh</p>
     <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
