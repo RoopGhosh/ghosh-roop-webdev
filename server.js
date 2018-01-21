@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/public'));
 require ("./assignment/app.js")(app);
 
 //  Set the environment variables
-var ip = '35.162.77.161';
+var ip = '127.0.0.1';
 var port =3000;
 console.log(ip);
 console.log(port);
