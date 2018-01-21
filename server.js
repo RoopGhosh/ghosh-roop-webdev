@@ -12,12 +12,8 @@ app.use(express.static(__dirname + '/public'));
 require ("./assignment/app.js")(app);
 
 //  Set the environment variables
-var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-console.log("this is open shift ip");
-console.log(process.env.OPENSHIFT_NODEJS_IP );
-console.log("this is openshift port");
-console.log(process.env.OPENSHIFT_NODEJS_PORT );
+var ip = process.env.LANDING_PORT_8080_TCP_ADDR || '127.0.0.1';
+var port = process.env.ANDING_SERVICE_PORT_8080_TCP|| 3000;
 console.log(ip);
 console.log(port);
 console.log(process.env.OPENSHIFT_MONGODB_DB_URL);
