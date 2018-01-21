@@ -13,7 +13,7 @@ require ("./assignment/app.js")(app);
 
 //  Set the environment variables
 var ip = process.env.LANDING_PORT_8080_TCP_ADDR || '127.0.0.1';
-var port = process.env.ANDING_SERVICE_PORT_8080_TCP|| 3000;
+var port = process.env.LANDING_SERVICE_PORT_8080_TCP|| 3000;
 console.log(ip);
 console.log(port);
 console.log(process.env.OPENSHIFT_MONGODB_DB_URL);
